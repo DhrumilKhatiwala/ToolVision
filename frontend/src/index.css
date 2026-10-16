@@ -124,9 +124,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .card-glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-xs);
 }
 
 /* Button System */

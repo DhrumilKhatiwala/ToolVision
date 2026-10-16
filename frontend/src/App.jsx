@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import PredictPage from "./pages/PredictPage";
 import DashboardPage from "./pages/DashboardPage";
-import { getOnnxSession } from "./utils/onnxInference";
 
 export default function App() {
   const [activeTab, setActiveTab] = useState("predict");
-
-  // Preload and compile ONNX model in the background as soon as the user opens the page
-  useEffect(() => {
-    getOnnxSession().catch((err) => console.log("[ToolVision] Background preload:", err.message));
-  }, []);
 
   return (
     <div className="bg-gradient-pattern" style={{ minHeight: "100vh", display: "flex", flexDirection: "column" }}>

@@ -387,7 +387,6 @@ export default function DashboardPage() {
               gap: "0.35rem",
               fontSize: "0.78rem",
               fontWeight: 500,
-              backdropFilter: "blur(4px)",
             }}
           >
             <ZoomIn size={14} />
@@ -481,7 +480,7 @@ export default function DashboardPage() {
             alignItems: "center",
             justifyContent: "center",
             padding: "2rem",
-            backdropFilter: "blur(6px)",
+            backgroundColor: "rgba(15, 23, 42, 0.85)",
           }}
         >
           <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh" }}>
