@@ -36,6 +36,8 @@ class ToolInferenceService:
             from ultralytics import YOLO
 
             self.device = "cuda" if torch.cuda.is_available() else "cpu"
+            if self.device == "cpu":
+                torch.set_num_threads(1)
             if MODEL_WEIGHTS_PATH.exists():
                 print(f"[ToolVision] Loading YOLOv8 model from {MODEL_WEIGHTS_PATH} onto {self.device}...")
                 self.model = YOLO(str(MODEL_WEIGHTS_PATH))
@@ -76,21 +78,24 @@ class ToolInferenceService:
 
         orig_w, orig_h = image.size
 
-        # Resize if image exceeds max dimension to avoid OOM / slow CPU inference
-        if max(orig_w, orig_h) > MAX_IMAGE_DIMENSION:
-            scale = MAX_IMAGE_DIMENSION / max(orig_w, orig_h)
+        # Optimize image dimension for low-resource cloud CPUs (max 800px)
+        max_dim = 800
+        if max(orig_w, orig_h) > max_dim:
+            scale = max_dim / max(orig_w, orig_h)
             new_w, new_h = int(orig_w * scale), int(orig_h * scale)
-            image = image.resize((new_w, new_h), Image.Resampling.LANCZOS)
+            image = image.resize((new_w, new_h), Image.Resampling.BILINEAR)
             cur_w, cur_h = new_w, new_h
         else:
             cur_w, cur_h = orig_w, orig_h
 
-        # Run inference
+        # Run inference strictly at standard 640x640 with retina_masks=False to avoid CPU throttling
         start_time = time.perf_counter()
         results = self.model.predict(
             source=image,
             conf=threshold,
             device=self.device,
+            imgsz=640,
+            retina_masks=False,
             verbose=False,
         )
         inference_time_ms = round((time.perf_counter() - start_time) * 1000, 2)
