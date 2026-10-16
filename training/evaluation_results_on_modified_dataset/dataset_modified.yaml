@@ -1,0 +1,23 @@
+names:
+  0: search-for-tools
+  1: Adjustable spanner
+  2: Backsaw
+  3: Calipers
+  4: Cutting pliers
+  5: Drill
+  6: Gas wrench
+  7: Gun
+  8: Hammer
+  9: Hand
+  10: Handsaw
+  11: Needle-nose pliers
+  12: Pliers
+  13: Ratchet
+  14: Screwdriver
+  15: Tape measure
+  16: Utility knife
+  17: Wrench
+path: /content/yolo_dataset_modified
+test: test/images
+train: train/images
+val: valid/images
