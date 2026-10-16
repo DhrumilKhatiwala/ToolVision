@@ -13,8 +13,10 @@ BACKEND_DIR = Path(__file__).resolve().parent
 # Project root (one level up from backend/)
 PROJECT_ROOT = BACKEND_DIR.parent
 
-# Model weights path (copied into backend/weights/)
-MODEL_WEIGHTS_PATH = BACKEND_DIR / "weights" / "best.pt"
+# Model weights path (prefers ONNX for ultra-low latency & low memory, falls back to .pt)
+ONNX_WEIGHTS_PATH = BACKEND_DIR / "weights" / "best.onnx"
+PT_WEIGHTS_PATH = BACKEND_DIR / "weights" / "best.pt"
+MODEL_WEIGHTS_PATH = ONNX_WEIGHTS_PATH if ONNX_WEIGHTS_PATH.exists() else PT_WEIGHTS_PATH
 
 # Training & Evaluation artifacts directory (in training/)
 TRAINING_DIR = PROJECT_ROOT / "training"

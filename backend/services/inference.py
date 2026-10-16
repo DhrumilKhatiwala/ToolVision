@@ -40,7 +40,8 @@ class ToolInferenceService:
                 torch.set_num_threads(1)
             if MODEL_WEIGHTS_PATH.exists():
                 print(f"[ToolVision] Loading YOLOv8 model from {MODEL_WEIGHTS_PATH} onto {self.device}...")
-                self.model = YOLO(str(MODEL_WEIGHTS_PATH))
+                task_param = "segment" if str(MODEL_WEIGHTS_PATH).endswith(".onnx") else None
+                self.model = YOLO(str(MODEL_WEIGHTS_PATH), task=task_param)
                 self.classes = getattr(self.model, "names", {})
                 print(f"[ToolVision] Model loaded successfully! {len(self.classes)} classes found.")
             else:
