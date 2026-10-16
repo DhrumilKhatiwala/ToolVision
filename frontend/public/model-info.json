@@ -1,4 +1,4 @@
-﻿{
+{
     "model_name":  "YOLOv8n-seg Tool Detection",
     "task":  "instance-segmentation",
     "classes":  {
@@ -22,7 +22,7 @@
                     "17":  "Wrench"
                 },
     "num_classes":  18,
-    "weights_path":  "C:\\Projects\\ToolPrediction\\backend\\weights\\best.onnx",
-    "device":  "cpu",
+    "weights_path":  "/model/best.onnx",
+    "device":  "WebAssembly (Browser)",
     "conf_threshold":  0.25
 }

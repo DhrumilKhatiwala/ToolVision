@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { BarChart3, TrendingUp, Award, Layers, Clock, ZoomIn, X, Search, Activity, Image as ImageIcon } from "lucide-react";
 import { fetchMetrics, fetchModelInfo, getMetricImageUrl } from "../utils/api";
+import { STATIC_METRICS, STATIC_MODEL_INFO } from "../data/staticData";
 
 export default function DashboardPage() {
-  const [metrics, setMetrics] = useState(null);
-  const [modelInfo, setModelInfo] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [metrics, setMetrics] = useState(STATIC_METRICS);
+  const [modelInfo, setModelInfo] = useState(STATIC_MODEL_INFO);
+  const [isLoading, setIsLoading] = useState(false);
   const [activeArtifactTab, setActiveArtifactTab] = useState("confusion_matrix_normalized.png");
   const [selectedImageModal, setSelectedImageModal] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -17,17 +18,38 @@ export default function DashboardPage() {
       try {
         const [m, info] = await Promise.all([fetchMetrics(), fetchModelInfo()]);
         if (isMounted) {
-          setMetrics(m);
-          setModelInfo(info);
+          if (m) setMetrics(m);
+          if (info) setModelInfo(info);
         }
       } catch (err) {
         console.error("Error loading dashboard data:", err);
-      } finally {
-        if (isMounted) setIsLoading(false);
       }
     }
     loadData();
-    return () => { isMounted = false; };
+
+    // Pre-cache tab artifact images for zero-lag tab transitions
+    const preloads = [
+      "confusion_matrix_normalized.png",
+      "confusion_matrix.png",
+      "results.png",
+      "BoxPR_curve.png",
+      "MaskPR_curve.png",
+      "val_batch0_pred.jpg",
+    ];
+    preloads.forEach((file) => {
+      const preloadImg = new Image();
+      preloadImg.src = getMetricImageUrl(file);
+    });
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") setSelectedImageModal(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      isMounted = false;
+      window.removeEventListener("keydown", handleKeyDown);
+    };
   }, []);
 
   if (isLoading) {
@@ -363,16 +385,22 @@ export default function DashboardPage() {
           onClick={() => setSelectedImageModal(getMetricImageUrl(activeArtifactTab))}
           title="Click to view full size"
         >
-          <img
-            src={getMetricImageUrl(activeArtifactTab)}
-            alt={activeArtifactTab}
-            style={{
-              maxWidth: "100%",
-              maxHeight: "560px",
-              objectFit: "contain",
-              borderRadius: "4px",
-            }}
-          />
+          {artifactTabs.map((tab) => (
+            <img
+              key={tab.id}
+              src={getMetricImageUrl(tab.id)}
+              alt={tab.label}
+              decoding="async"
+              loading="eager"
+              style={{
+                display: activeArtifactTab === tab.id ? "block" : "none",
+                maxWidth: "100%",
+                maxHeight: "560px",
+                objectFit: "contain",
+                borderRadius: "4px",
+              }}
+            />
+          ))}
           <div
             style={{
               position: "absolute",
@@ -387,6 +415,7 @@ export default function DashboardPage() {
               gap: "0.35rem",
               fontSize: "0.78rem",
               fontWeight: 500,
+              pointerEvents: "none",
             }}
           >
             <ZoomIn size={14} />
@@ -480,17 +509,33 @@ export default function DashboardPage() {
             alignItems: "center",
             justifyContent: "center",
             padding: "2rem",
-            backgroundColor: "rgba(15, 23, 42, 0.85)",
+            cursor: "zoom-out",
           }}
         >
-          <div style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh" }}>
+          <div
+            style={{ position: "relative", maxWidth: "90vw", maxHeight: "90vh", cursor: "default" }}
+            onClick={(e) => e.stopPropagation()}
+          >
             <button
               onClick={() => setSelectedImageModal(null)}
               className="btn btn-secondary btn-sm"
-              style={{ position: "absolute", top: "-2.5rem", right: 0, color: "#FFF", backgroundColor: "rgba(255,255,255,0.2)", border: "none" }}
+              style={{
+                position: "absolute",
+                top: "-2.5rem",
+                right: 0,
+                color: "#FFF",
+                backgroundColor: "rgba(255, 255, 255, 0.25)",
+                border: "none",
+                display: "inline-flex",
+                alignItems: "center",
+                gap: "0.25rem",
+                padding: "0.35rem 0.75rem",
+                borderRadius: "4px",
+                cursor: "pointer",
+              }}
             >
               <X size={16} />
-              <span>Close</span>
+              <span>Close (Esc)</span>
             </button>
             <img
               src={selectedImageModal}
