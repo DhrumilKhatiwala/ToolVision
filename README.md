@@ -224,15 +224,3 @@ ToolPrediction/
 - [Lucide React](https://lucide.dev/) - Enterprise-grade clean vector iconography
 - [Vercel](https://vercel.com/) - Zero-config serverless edge hosting
 
----
-
-## 🤝 Contributing
-
-Contributions, issues, and feature requests are welcome! 
-Feel free to check out the [issues page](https://github.com/DhrumilKhatiwala/ToolVision/issues).
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
