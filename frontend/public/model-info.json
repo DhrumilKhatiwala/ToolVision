@@ -1,0 +1,28 @@
+﻿{
+    "model_name":  "YOLOv8n-seg Tool Detection",
+    "task":  "instance-segmentation",
+    "classes":  {
+                    "0":  "search-for-tools",
+                    "1":  "Adjustable spanner",
+                    "2":  "Backsaw",
+                    "3":  "Calipers",
+                    "4":  "Cutting pliers",
+                    "5":  "Drill",
+                    "6":  "Gas wrench",
+                    "7":  "Gun",
+                    "8":  "Hammer",
+                    "9":  "Hand",
+                    "10":  "Handsaw",
+                    "11":  "Needle-nose pliers",
+                    "12":  "Pliers",
+                    "13":  "Ratchet",
+                    "14":  "Screwdriver",
+                    "15":  "Tape measure",
+                    "16":  "Utility knife",
+                    "17":  "Wrench"
+                },
+    "num_classes":  18,
+    "weights_path":  "C:\\Projects\\ToolPrediction\\backend\\weights\\best.onnx",
+    "device":  "cpu",
+    "conf_threshold":  0.25
+}
