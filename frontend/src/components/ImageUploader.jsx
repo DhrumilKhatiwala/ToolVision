@@ -58,7 +58,7 @@ export default function ImageUploader({ selectedFile, previewUrl, onSelectFile, 
 
 
   return (
-    <div className="card" style={{ padding: "1.75rem", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
+    <div className="card" style={{ padding: "clamp(1rem, 3vw, 1.75rem)", display: "flex", flexDirection: "column", gap: "1.25rem" }}>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
         <div>
           <h3 style={{ fontSize: "1.1rem", fontWeight: 700, display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -94,12 +94,12 @@ export default function ImageUploader({ selectedFile, previewUrl, onSelectFile, 
           border: `1.5px dashed ${isDragging ? "var(--accent-primary)" : "var(--border-medium)"}`,
           borderRadius: "8px",
           backgroundColor: isDragging ? "var(--bg-accent-subtle)" : previewUrl ? "#FFFFFF" : "var(--bg-subtle)",
-          padding: previewUrl ? "1.25rem" : "3rem 1.5rem",
+          padding: previewUrl ? "1rem" : "clamp(1.5rem, 4vw, 3rem) 1rem",
           textAlign: "center",
           cursor: previewUrl ? "default" : "pointer",
           transition: "all var(--transition-normal)",
           position: "relative",
-          minHeight: "280px",
+          minHeight: "260px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
@@ -188,19 +188,19 @@ export default function ImageUploader({ selectedFile, previewUrl, onSelectFile, 
       </div>
 
       {/* Preset Sample Buttons */}
-      <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1.25rem" }}>
-        <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "0.6rem" }}>
+      <div style={{ borderTop: "1px solid var(--border-subtle)", paddingTop: "1rem" }}>
+        <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "0.5rem" }}>
           Benchmark Evaluation Samples:
         </div>
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(130px, 1fr))", gap: "0.5rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(115px, 1fr))", gap: "0.4rem" }}>
           <button
             id="sample-hammer-btn"
             onClick={() => loadSampleImage("hammer")}
             className="btn btn-secondary btn-sm"
             disabled={isLoading}
-            style={{ justifyContent: "center", padding: "0.5rem 0.75rem", fontSize: "0.8rem" }}
+            style={{ justifyContent: "center", padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
           >
-            <Hammer size={14} color="var(--text-secondary)" />
+            <Hammer size={13} color="var(--text-secondary)" />
             <span>Claw Hammer</span>
           </button>
           <button
@@ -208,9 +208,9 @@ export default function ImageUploader({ selectedFile, previewUrl, onSelectFile, 
             onClick={() => loadSampleImage("wrench")}
             className="btn btn-secondary btn-sm"
             disabled={isLoading}
-            style={{ justifyContent: "center", padding: "0.5rem 0.75rem", fontSize: "0.8rem" }}
+            style={{ justifyContent: "center", padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
           >
-            <Wrench size={14} color="var(--text-secondary)" />
+            <Wrench size={13} color="var(--text-secondary)" />
             <span>Spanner Wrench</span>
           </button>
           <button
@@ -218,19 +218,19 @@ export default function ImageUploader({ selectedFile, previewUrl, onSelectFile, 
             onClick={() => loadSampleImage("pliers")}
             className="btn btn-secondary btn-sm"
             disabled={isLoading}
-            style={{ justifyContent: "center", padding: "0.5rem 0.75rem", fontSize: "0.8rem" }}
+            style={{ justifyContent: "center", padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
           >
-            <Scissors size={14} color="var(--text-secondary)" />
-            <span>Combination Pliers</span>
+            <Scissors size={13} color="var(--text-secondary)" />
+            <span>Pliers</span>
           </button>
           <button
             id="sample-screwdriver-btn"
             onClick={() => loadSampleImage("screwdriver")}
             className="btn btn-secondary btn-sm"
             disabled={isLoading}
-            style={{ justifyContent: "center", padding: "0.5rem 0.75rem", fontSize: "0.8rem" }}
+            style={{ justifyContent: "center", padding: "0.45rem 0.65rem", fontSize: "0.78rem" }}
           >
-            <Wrench size={14} color="var(--text-secondary)" />
+            <Wrench size={13} color="var(--text-secondary)" />
             <span>Screwdriver</span>
           </button>
         </div>

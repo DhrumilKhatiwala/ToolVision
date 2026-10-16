@@ -326,3 +326,214 @@ h1, h2, h3, h4, h5, h6 {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* ==========================================================================
+   Responsive & Adaptive Grid System
+   ========================================================================== */
+
+/* Responsive Containers */
+@media (max-width: 640px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .card {
+    border-radius: var(--radius-md);
+  }
+
+  .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-size: 0.95rem;
+  }
+}
+
+/* Studio & Prediction Layout Grids */
+.studio-grid {
+  display: grid;
+  grid-template-columns: 1.35fr 0.9fr;
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
+@media (max-width: 960px) {
+  .studio-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.prediction-grid {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 960px) {
+  .prediction-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+/* Dashboard Charts Grid */
+.dashboard-charts-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 860px) {
+  .dashboard-charts-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+/* KPI Cards Grid */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 1.25rem;
+  margin-bottom: 2.5rem;
+}
+
+@media (max-width: 640px) {
+  .kpi-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .kpi-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Split View Grid */
+.split-view-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .split-view-grid {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+}
+
+/* Smooth Horizontal Scroll Tabs for Mobile */
+.tabs-scroll-container {
+  display: flex;
+  gap: 0.3rem;
+  overflow-x: auto;
+  white-space: nowrap;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  padding: 0.25rem;
+  background-color: var(--bg-subtle);
+  border-radius: 6px;
+  max-width: 100%;
+}
+
+.tabs-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Responsive Metric Card & Banner */
+.metrics-banner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .metrics-banner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+}
+
+.metrics-row {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .metrics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    text-align: center;
+    width: 100%;
+  }
+
+  .metric-divider {
+    display: none !important;
+  }
+}
+
+/* Responsive Navbar utilities */
+.nav-subtitle {
+  display: block;
+}
+
+@media (max-width: 640px) {
+  .nav-subtitle {
+    display: none !important;
+  }
+}
+
+.nav-tab-text-full {
+  display: inline;
+}
+
+.nav-tab-text-short {
+  display: none;
+}
+
+@media (max-width: 520px) {
+  .nav-tab-text-full {
+    display: none !important;
+  }
+  .nav-tab-text-short {
+    display: inline !important;
+  }
+}
+
+/* Responsive Typography */
+.hero-title {
+  font-size: clamp(1.85rem, 5.5vw, 2.85rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.75rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: var(--text-primary);
+}
+
+.hero-subtitle {
+  max-width: 680px;
+  margin: 0 auto;
+  color: var(--text-secondary);
+  font-size: clamp(0.925rem, 2.5vw, 1.05rem);
+  line-height: 1.6;
+}
+
+.dashboard-title {
+  font-size: clamp(1.65rem, 4.5vw, 2.25rem);
+  letter-spacing: -0.03em;
+  margin-bottom: 0.5rem;
+  font-weight: 800;
+}
+

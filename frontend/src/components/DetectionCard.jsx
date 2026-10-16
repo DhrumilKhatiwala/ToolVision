@@ -96,6 +96,8 @@ export default function DetectionCard({ detection, index }) {
         display: "flex",
         justifyContent: "space-between",
         alignItems: "center",
+        flexWrap: "wrap",
+        gap: "0.35rem",
         backgroundColor: "var(--bg-subtle)",
         padding: "0.45rem 0.65rem",
         borderRadius: "4px",

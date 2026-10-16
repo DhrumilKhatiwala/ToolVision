@@ -97,11 +97,11 @@ export default function PredictPage() {
           </div>
         </div>
 
-        <h1 style={{ fontSize: "2.85rem", letterSpacing: "-0.03em", marginBottom: "0.75rem", fontWeight: 800, lineHeight: 1.15, color: "var(--text-primary)" }}>
+        <h1 className="hero-title">
           Hand Tool Detection & Segmentation
         </h1>
 
-        <p style={{ maxWidth: "680px", margin: "0 auto", color: "var(--text-secondary)", fontSize: "1.05rem", lineHeight: 1.6 }}>
+        <p className="hero-subtitle">
           Automated computer vision system for industrial tool localization and sub-pixel polygon boundary extraction using fine-tuned deep learning models.
         </p>
       </section>
@@ -138,7 +138,7 @@ export default function PredictPage() {
         )}
 
         {/* Upload & Inference Controls Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "1.35fr 0.9fr", gap: "1.5rem", alignItems: "stretch" }}>
+        <div className="studio-grid">
           
           {/* Left: Uploader */}
           <ImageUploader

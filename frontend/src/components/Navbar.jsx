@@ -32,10 +32,10 @@ export default function Navbar({ activeTab, setActiveTab }) {
             </svg>
           </div>
           <div>
-            <div style={{ fontWeight: 700, fontSize: "1.2rem", letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
+            <div style={{ fontWeight: 700, fontSize: "1.15rem", letterSpacing: "-0.02em", color: "var(--text-primary)" }}>
               ToolVision
             </div>
-            <div style={{ fontSize: "0.75rem", color: "var(--text-secondary)", marginTop: "-1px" }}>
+            <div className="nav-subtitle" style={{ fontSize: "0.72rem", color: "var(--text-secondary)", marginTop: "-1px" }}>
               Computer Vision & Instance Segmentation
             </div>
           </div>
@@ -45,11 +45,12 @@ export default function Navbar({ activeTab, setActiveTab }) {
         <nav style={{
           display: "flex",
           alignItems: "center",
-          gap: "0.25rem",
+          gap: "0.2rem",
           background: "var(--bg-subtle)",
-          padding: "0.25rem",
+          padding: "0.2rem",
           borderRadius: "8px",
-          border: "1px solid var(--border-subtle)"
+          border: "1px solid var(--border-subtle)",
+          flexShrink: 0
         }}>
           <button
             id="tab-predict"
@@ -61,14 +62,16 @@ export default function Navbar({ activeTab, setActiveTab }) {
               boxShadow: activeTab === "predict" ? "var(--shadow-xs)" : "none",
               borderRadius: "6px",
               fontWeight: activeTab === "predict" ? 600 : 500,
-              padding: "0.45rem 1rem",
+              padding: "0.4rem 0.75rem",
               display: "flex",
               alignItems: "center",
-              gap: "0.45rem"
+              gap: "0.35rem",
+              fontSize: "0.825rem"
             }}
           >
-            <Crosshair size={15} />
-            <span>Detection Studio</span>
+            <Crosshair size={14} />
+            <span className="nav-tab-text-full">Detection Studio</span>
+            <span className="nav-tab-text-short">Detect</span>
           </button>
           
           <button
@@ -81,14 +84,16 @@ export default function Navbar({ activeTab, setActiveTab }) {
               boxShadow: activeTab === "dashboard" ? "var(--shadow-xs)" : "none",
               borderRadius: "6px",
               fontWeight: activeTab === "dashboard" ? 600 : 500,
-              padding: "0.45rem 1rem",
+              padding: "0.4rem 0.75rem",
               display: "flex",
               alignItems: "center",
-              gap: "0.45rem"
+              gap: "0.35rem",
+              fontSize: "0.825rem"
             }}
           >
-            <BarChart3 size={15} />
-            <span>Model Analytics</span>
+            <BarChart3 size={14} />
+            <span className="nav-tab-text-full">Model Analytics</span>
+            <span className="nav-tab-text-short">Analytics</span>
           </button>
         </nav>
 

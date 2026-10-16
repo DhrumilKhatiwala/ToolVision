@@ -22,19 +22,14 @@ export default function PredictionView({ predictionResult, originalUrl }) {
     <div style={{ display: "flex", flexDirection: "column", gap: "1.5rem" }} className="animate-fade-in">
       {/* Metrics Banner */}
       <div
-        className="card"
+        className="card metrics-banner"
         style={{
-          padding: "1.25rem 1.75rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          flexWrap: "wrap",
-          gap: "1.25rem",
+          padding: "1.25rem",
           backgroundColor: "#FFFFFF",
           border: "1px solid var(--border-subtle)"
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "2rem", flexWrap: "wrap" }}>
+        <div className="metrics-row">
           <div>
             <div style={{ fontSize: "0.725rem", color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.35rem" }}>
               <Target size={13} color="var(--accent-primary)" />
@@ -45,7 +40,7 @@ export default function PredictionView({ predictionResult, originalUrl }) {
             </div>
           </div>
 
-          <div style={{ width: "1px", height: "36px", backgroundColor: "var(--border-subtle)" }} />
+          <div className="metric-divider" style={{ width: "1px", height: "36px", backgroundColor: "var(--border-subtle)" }} />
 
           <div>
             <div style={{ fontSize: "0.725rem", color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.35rem" }}>
@@ -57,7 +52,7 @@ export default function PredictionView({ predictionResult, originalUrl }) {
             </div>
           </div>
 
-          <div style={{ width: "1px", height: "36px", backgroundColor: "var(--border-subtle)" }} />
+          <div className="metric-divider" style={{ width: "1px", height: "36px", backgroundColor: "var(--border-subtle)" }} />
 
           <div>
             <div style={{ fontSize: "0.725rem", color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.06em", fontWeight: 600, display: "flex", alignItems: "center", gap: "0.35rem" }}>
@@ -71,15 +66,8 @@ export default function PredictionView({ predictionResult, originalUrl }) {
         </div>
 
         {/* View Switcher & Export */}
-        <div style={{ display: "flex", alignItems: "center", gap: "0.6rem" }}>
-          <div style={{
-            background: "var(--bg-subtle)",
-            padding: "0.25rem",
-            borderRadius: "6px",
-            display: "flex",
-            gap: "0.2rem",
-            border: "1px solid var(--border-subtle)"
-          }}>
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", flexWrap: "wrap", width: "100%", justifyContent: "space-between" }}>
+          <div className="tabs-scroll-container">
             <button
               id="view-annotated-btn"
               onClick={() => setActiveView("annotated")}
@@ -92,11 +80,12 @@ export default function PredictionView({ predictionResult, originalUrl }) {
                 fontSize: "0.8rem",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.35rem"
+                gap: "0.35rem",
+                whiteSpace: "nowrap"
               }}
             >
               <Layers size={13} />
-              <span>Segmentation Mask</span>
+              <span>Mask</span>
             </button>
 
             <button
@@ -111,7 +100,8 @@ export default function PredictionView({ predictionResult, originalUrl }) {
                 fontSize: "0.8rem",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.35rem"
+                gap: "0.35rem",
+                whiteSpace: "nowrap"
               }}
             >
               <Eye size={13} />
@@ -130,7 +120,8 @@ export default function PredictionView({ predictionResult, originalUrl }) {
                 fontSize: "0.8rem",
                 display: "flex",
                 alignItems: "center",
-                gap: "0.35rem"
+                gap: "0.35rem",
+                whiteSpace: "nowrap"
               }}
             >
               <Columns size={13} />
@@ -152,12 +143,12 @@ export default function PredictionView({ predictionResult, originalUrl }) {
       </div>
 
       {/* Main Content: Visualizer & Detection List */}
-      <div style={{ display: "grid", gridTemplateColumns: "1.25fr 1fr", gap: "1.5rem", alignItems: "start" }}>
+      <div className="prediction-grid">
         
         {/* Visualizer Frame */}
         <div className="card" style={{ padding: "1.25rem", overflow: "hidden" }}>
           {activeView === "split" ? (
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem" }}>
+            <div className="split-view-grid">
               <div>
                 <div style={{ fontSize: "0.8rem", fontWeight: 600, color: "var(--text-secondary)", marginBottom: "0.5rem" }}>
                   Original Image

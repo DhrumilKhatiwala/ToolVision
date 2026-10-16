@@ -217,26 +217,26 @@ export default function DashboardPage() {
           <Activity size={12} />
           <span>Evaluation Metrics</span>
         </div>
-        <h1 style={{ fontSize: "2.25rem", letterSpacing: "-0.03em", marginBottom: "0.5rem", fontWeight: 800 }}>
+        <h1 className="dashboard-title">
           Model Analytics & Benchmarks
         </h1>
-        <p style={{ color: "var(--text-secondary)", fontSize: "1.05rem" }}>
+        <p style={{ color: "var(--text-secondary)", fontSize: "clamp(0.9rem, 2vw, 1.05rem)" }}>
           Validation loss convergence curves, precision metrics, confusion matrix, and class taxonomy for YOLOv8n-seg.
         </p>
       </div>
 
       {/* KPI Cards Row */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(230px, 1fr))", gap: "1.25rem", marginBottom: "2.5rem" }}>
+      <div className="kpi-grid">
         
         {/* KPI 1 */}
-        <div className="card" style={{ padding: "1.5rem" }}>
+        <div className="card" style={{ padding: "1.25rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
             <span style={{ fontSize: "0.825rem", fontWeight: 600, color: "var(--text-secondary)" }}>
               Best mAP@50
             </span>
             <Award size={16} color="var(--success)" />
           </div>
-          <div style={{ fontSize: "2.25rem", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+          <div style={{ fontSize: "clamp(1.75rem, 4vw, 2.25rem)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
             {(metrics?.best_map50 * 100).toFixed(1)}%
           </div>
           <div style={{ fontSize: "0.78rem", color: "var(--success)", fontWeight: 500, marginTop: "0.25rem" }}>
@@ -245,14 +245,14 @@ export default function DashboardPage() {
         </div>
 
         {/* KPI 2 */}
-        <div className="card" style={{ padding: "1.5rem" }}>
+        <div className="card" style={{ padding: "1.25rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
             <span style={{ fontSize: "0.825rem", fontWeight: 600, color: "var(--text-secondary)" }}>
               Best mAP@50-95
             </span>
             <TrendingUp size={16} color="var(--accent-primary)" />
           </div>
-          <div style={{ fontSize: "2.25rem", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+          <div style={{ fontSize: "clamp(1.75rem, 4vw, 2.25rem)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
             {(metrics?.best_map50_95 * 100).toFixed(1)}%
           </div>
           <div style={{ fontSize: "0.78rem", color: "var(--accent-primary)", fontWeight: 500, marginTop: "0.25rem" }}>
@@ -261,14 +261,14 @@ export default function DashboardPage() {
         </div>
 
         {/* KPI 3 */}
-        <div className="card" style={{ padding: "1.5rem" }}>
+        <div className="card" style={{ padding: "1.25rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
             <span style={{ fontSize: "0.825rem", fontWeight: 600, color: "var(--text-secondary)" }}>
               Training Epochs
             </span>
             <Clock size={16} color="#0EA5E9" />
           </div>
-          <div style={{ fontSize: "2.25rem", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+          <div style={{ fontSize: "clamp(1.75rem, 4vw, 2.25rem)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
             {metrics?.final_epoch || 15}
           </div>
           <div style={{ fontSize: "0.78rem", color: "var(--text-secondary)", marginTop: "0.25rem" }}>
@@ -277,14 +277,14 @@ export default function DashboardPage() {
         </div>
 
         {/* KPI 4 */}
-        <div className="card" style={{ padding: "1.5rem" }}>
+        <div className="card" style={{ padding: "1.25rem" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.6rem" }}>
             <span style={{ fontSize: "0.825rem", fontWeight: 600, color: "var(--text-secondary)" }}>
               Tool Categories
             </span>
             <Layers size={16} color="#6366F1" />
           </div>
-          <div style={{ fontSize: "2.25rem", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
+          <div style={{ fontSize: "clamp(1.75rem, 4vw, 2.25rem)", fontWeight: 700, color: "var(--text-primary)", fontFamily: "var(--font-mono)" }}>
             {modelInfo?.num_classes || 18}
           </div>
           <div style={{ fontSize: "0.78rem", color: "var(--text-secondary)", marginTop: "0.25rem" }}>
@@ -295,11 +295,11 @@ export default function DashboardPage() {
       </div>
 
       {/* SVG Charts Row */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "2.5rem" }}>
+      <div className="dashboard-charts-grid">
         
         {/* Loss Convergence Chart */}
-        <div className="card" style={{ padding: "1.75rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+        <div className="card" style={{ padding: "clamp(1rem, 3vw, 1.75rem)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
             <div>
               <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>
                 Loss Convergence
@@ -315,8 +315,8 @@ export default function DashboardPage() {
         </div>
 
         {/* mAP Metrics Chart */}
-        <div className="card" style={{ padding: "1.75rem" }}>
-          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem" }}>
+        <div className="card" style={{ padding: "clamp(1rem, 3vw, 1.75rem)" }}>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "0.5rem" }}>
             <div>
               <h3 style={{ fontSize: "1.1rem", fontWeight: 700 }}>
                 Mean Average Precision
@@ -334,7 +334,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Evaluation Artifacts Viewer */}
-      <div className="card" style={{ padding: "1.75rem", marginBottom: "2.5rem" }}>
+      <div className="card" style={{ padding: "clamp(1rem, 3vw, 1.75rem)", marginBottom: "2.5rem" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <h3 style={{ fontSize: "1.15rem", fontWeight: 700 }}>
@@ -346,7 +346,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Artifact Tabs */}
-          <div style={{ display: "flex", gap: "0.3rem", flexWrap: "wrap", backgroundColor: "var(--bg-subtle)", padding: "0.25rem", borderRadius: "6px" }}>
+          <div className="tabs-scroll-container">
             {artifactTabs.map((tab) => (
               <button
                 key={tab.id}
@@ -359,7 +359,8 @@ export default function DashboardPage() {
                   fontWeight: activeArtifactTab === tab.id ? 600 : 500,
                   fontSize: "0.78rem",
                   padding: "0.35rem 0.65rem",
-                  borderRadius: "4px"
+                  borderRadius: "4px",
+                  whiteSpace: "nowrap"
                 }}
               >
                 <span>{tab.label}</span>
@@ -375,11 +376,11 @@ export default function DashboardPage() {
             backgroundColor: "#FFFFFF",
             border: "1px solid var(--border-subtle)",
             borderRadius: "6px",
-            padding: "1.5rem",
+            padding: "clamp(0.75rem, 2vw, 1.5rem)",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            minHeight: "440px",
+            minHeight: "clamp(240px, 40vw, 440px)",
             cursor: "pointer",
           }}
           onClick={() => setSelectedImageModal(getMetricImageUrl(activeArtifactTab))}
@@ -425,7 +426,7 @@ export default function DashboardPage() {
       </div>
 
       {/* Hand Tool Classes Taxonomy */}
-      <div className="card" style={{ padding: "1.75rem" }}>
+      <div className="card" style={{ padding: "clamp(1rem, 3vw, 1.75rem)" }}>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "1.25rem", flexWrap: "wrap", gap: "1rem" }}>
           <div>
             <h3 style={{ fontSize: "1.15rem", fontWeight: 700 }}>
@@ -437,7 +438,7 @@ export default function DashboardPage() {
           </div>
 
           {/* Search Input */}
-          <div style={{ position: "relative", minWidth: "260px" }}>
+          <div style={{ position: "relative", width: "100%", maxWidth: "320px" }}>
             <Search size={15} color="var(--text-muted)" style={{ position: "absolute", left: "0.75rem", top: "50%", transform: "translateY(-50%)" }} />
             <input
               type="text"
@@ -457,7 +458,7 @@ export default function DashboardPage() {
         </div>
 
         {/* Classes Grid */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(210px, 1fr))", gap: "0.75rem" }}>
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(150px, 1fr))", gap: "0.65rem" }}>
           {filteredClasses.map((item) => (
             <div
               key={item.id}
